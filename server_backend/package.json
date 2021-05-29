@@ -1,0 +1,13 @@
+{
+  "name": "server_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Surajv311",
+  "license": "ISC"
+}
