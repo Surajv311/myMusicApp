@@ -9,5 +9,9 @@
   },
   "keywords": [],
   "author": "Surajv311",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "spotify-web-api-node": "^5.0.2"
+  }
 }
