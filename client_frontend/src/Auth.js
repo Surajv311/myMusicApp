@@ -12,12 +12,23 @@ export default function Auth(code) {
         code,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        setAccessToken(res.data.accessToken);
+        setRefreshToken(res.data.refreshToken);
+        setExpiresIn(res.data.expiresIn);
+        window.history.pushState({}, 0, "/");
+        // this web API would modify the URL ...to remove the 'code' part of the url...keeping url clean...
       })
       .catch(() => {
         window.location = "/";
       }); // if we get error we redirect user to home route... JS.....
   }, [code]);
+  return accessToken;
+
+  /*
+our access token expires after an 1hr (checked in v8 engine console) and logs out. So what we 
+must do is refresh the token by itself in the backend rather than our user doing it.
+*/
 }
 
 //Axios provides support for request and response interceptors, transformers and auto-conversion to JSON
