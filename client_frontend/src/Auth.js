@@ -32,7 +32,30 @@ must do is refresh the token by itself in the backend rather than our user doing
   // so we run useEffect whenever our refreshToken/expiresIn changes in the backend.
   // with this our user wouldn't be logged out.
 
-  useEffect(() => {}, [refreshToken, expiresIn]);
+  // similar to earlier useEffect...
+  useEffect(() => {
+    if (!refreshToken || !expiresIn) return;
+    /*the condition would avoid this useEffect to run when page loads,
+    as if it runs with out this condition then actually we are refreshing 
+    the token before it was created...*/
+
+    // using setInterval() instead of setTimeout() to refresh it & execute it at intervals than once...which setTimeout() does
+    const interval = setInterval(() => {
+      axios
+        .post("http://localhost:3001/refresh", {
+          refreshToken,
+        })
+        .then((res) => {
+          setAccessToken(res.data.accessToken);
+          setExpiresIn(res.data.expiresIn);
+        })
+        .catch(() => {
+          window.location = "/";
+        });
+    }, (expiresIn - 60) * 1000); // refreshing it 1min before actual timeout... (*1000 used to convert to milliseconds...)
+
+    return () => clearInterval(interval);
+  }, [refreshToken, expiresIn]); // whenever refresh token expires we run it.
 
   return accessToken;
 }
