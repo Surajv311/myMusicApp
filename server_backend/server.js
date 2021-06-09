@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 
 */
 
-const clientId_ = "client ";
+const clientId_ = "client";
 const clientSecret_ = "secret";
 const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
 
@@ -67,10 +67,11 @@ app.post("/login", (req, res) => {
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
   const api_refresh = new SpotifyApi({
-    redirectUri: redirectUri_,
-    clientId: clientId_,
-    clientSecret: clientSecret_,
-    refreshToken,
+    // redirectUri: redirectUri_,
+    // clientId: clientId_,
+    // clientSecret: clientSecret_,
+    credentials,
+    refreshToken, // also need to pass refreshToken
   });
 
   api_refresh
