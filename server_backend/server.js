@@ -31,13 +31,13 @@ app.use(function (req, res, next) {
 
 */
 
-const clientId_ = "CLIENT_CODE";
-const clientSecret_ = "SECRET_CODE";
+const clientId_ = "client ";
+const clientSecret_ = "secret";
+const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
 
 //docs
 var credentials = {
-  //   redirectUri:  'http://localhost:3000/',
-  redirectUri: "http://localhost:3000/callback/",
+  redirectUri: redirectUri_,
   clientId: clientId_, // dotenv...
   clientSecret: clientSecret_,
 };
@@ -46,15 +46,39 @@ app.post("/login", (req, res) => {
   const code = req.body.code;
   // taking the 'code' portion of body
   console.log(req.body);
-  const api = new SpotifyApi(credentials);
+  const api_login = new SpotifyApi(credentials);
   // we get tokens once we authorize the code, in url...
-  api
+  api_login
     .authorizationCodeGrant(code)
     .then((data) => {
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
         expiresIn: data.body.expires_in,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+});
+
+// setting up the refresh access token...following docs
+app.post("/refresh", (req, res) => {
+  const refreshToken = req.body.refreshToken;
+  const api_refresh = new SpotifyApi({
+    redirectUri: redirectUri_,
+    clientId: clientId_,
+    clientSecret: clientSecret_,
+    refreshToken,
+  });
+
+  api_refresh
+    .refreshAccessToken()
+    .then((data) => {
+      res.json({
+        accessToken: data.body.accessToken,
+        expiresIn: data.body.expiresIn,
       });
     })
     .catch((err) => {
