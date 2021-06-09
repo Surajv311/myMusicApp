@@ -9,9 +9,10 @@ export default function Auth(code) {
   useEffect(() => {
     axios // posting our code to that route...
       .post("http://localhost:3001/login", {
-        code,
+        code, // passing the {code} to the port 3001
       })
       .then((res) => {
+        // we get response after sending {code} to server in login route...
         // console.log(res.data);
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
@@ -22,7 +23,7 @@ export default function Auth(code) {
       .catch(() => {
         window.location = "/";
       }); // if we get error we redirect user to home route... JS.....
-  }, [code]);
+  }, [code]); // useEffect executed whenever {code} changes... app rendered...
 
   /*
 our access token expires after an 1hr (checked in v8 engine console) and logs out. So what we 
@@ -52,10 +53,10 @@ must do is refresh the token by itself in the backend rather than our user doing
         .catch(() => {
           window.location = "/";
         });
-    }, (expiresIn - 60) * 1000); // refreshing it 1min before actual timeout... (*1000 used to convert to milliseconds...)
+    }, (expiresIn - 180) * 1000); // refreshing it 3mins before actual timeout... (*1000 used to convert to milliseconds...)
 
-    return () => clearInterval(interval);
-  }, [refreshToken, expiresIn]); // whenever refresh token expires we run it.
+    return () => clearInterval(interval); // clearing interval...
+  }, [refreshToken, expiresIn]); // whenever refresh token expires or expiresIn changes, we run it.
 
   return accessToken;
 }
