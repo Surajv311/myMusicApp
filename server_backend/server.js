@@ -17,5 +17,5 @@ var credentials = {
 
 app.post("/login", (req, res) => {
   const code = req.body.code;
-  const spotifyApi = new SpotifyApi(credentials);
+  const temp = new SpotifyApi(credentials);
 });
