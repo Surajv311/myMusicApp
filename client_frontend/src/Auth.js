@@ -23,12 +23,17 @@ export default function Auth(code) {
         window.location = "/";
       }); // if we get error we redirect user to home route... JS.....
   }, [code]);
-  return accessToken;
 
+  return accessToken;
   /*
 our access token expires after an 1hr (checked in v8 engine console) and logs out. So what we 
 must do is refresh the token by itself in the backend rather than our user doing it.
 */
+
+  // so we run useEffect whenever our refreshToken/expiresIn changes in the backend.
+  // with this our user wouldn't be logged out.
+
+  useEffect(() => {}, [refreshToken, expiresIn]);
 }
 
 //Axios provides support for request and response interceptors, transformers and auto-conversion to JSON
