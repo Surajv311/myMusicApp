@@ -13,7 +13,10 @@ export default function Auth(code) {
       })
       .then((res) => {
         console.log(res.data);
-      });
+      })
+      .catch(() => {
+        window.location = "/";
+      }); // if we get error we redirect user to home route... JS.....
   }, [code]);
 }
 
