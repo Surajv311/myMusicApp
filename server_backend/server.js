@@ -9,6 +9,10 @@ const app = express();
 
 // middleware
 app.use(cors());
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 
 /*
