@@ -1,1 +1,1 @@
-Music app using spotify api
+# Music app using Spotify's API
