@@ -5,6 +5,9 @@ const SpotifyApi = require("spotify-web-api-node");
 // spotifywebapi would take the code from url to get tokens...
 const cors = require("cors");
 const bodyParser = require("body-parser"); //  body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body
+
+const lyricsFinder = require("lyrics-finder");
+
 const app = express();
 
 // middleware
@@ -86,6 +89,13 @@ app.post("/refresh", (req, res) => {
       console.log(err);
       res.sendStatus(400);
     });
+});
+
+app.get("/lyrics", async (req, res) => {
+  const lyrics =
+    (await lyricsFinder(req.query.artist, req.query.track)) ||
+    "Lyrics not found! Try Again :("; // we passed artist & query track... if lyrics found then fine else, not found....
+  res.json({ lyrics });
 });
 
 app.listen(3001);
