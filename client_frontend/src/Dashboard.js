@@ -3,6 +3,8 @@ import Auth from "./Auth";
 import TrackSearch from "./TrackSearch";
 import { Container, Form } from "react-bootstrap";
 import SpotifyApi from "spotify-web-api-node";
+import Player from "./Player";
+import axios from "axios";
 
 const client_id = "585eaa2fa9ec4891a14bff801067f8d8";
 
@@ -12,6 +14,30 @@ export default function Dashboard({ code }) {
   const accessToken = Auth(code);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [playingTrack, setPlayingTrack] = useState();
+  const [lyrics, setLyrics] = useState("");
+
+  function chooseTrack(track) {
+    setPlayingTrack(track);
+    setSearch("");
+    setLyrics("");
+  }
+
+  useEffect(() => {
+    if (!playingTrack) return;
+
+    axios
+      .get("http://localhost:3001/lyrics", {
+        params: {
+          track: playingTrack.title,
+          artist: playingTrack.artist,
+        },
+      })
+      .then((res) => {
+        // so when response received we set the lyrics.....
+        setLyrics(res.data.lyrics);
+      });
+  }, [playingTrack]);
 
   useEffect(() => {
     if (!accessToken) return; // if accessToken doesn't exist then return ...else run useEffect...
@@ -58,10 +84,23 @@ export default function Dashboard({ code }) {
       />
       <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
         {searchResults.map((track) => (
-          <TrackSearch track={track} key={track.uri} />
+          <TrackSearch
+            track={track}
+            key={track.uri}
+            chooseTrack={chooseTrack}
+          />
         ))}
+        {searchResults.length === 0 && (
+          <div className="text-center" style={{ whiteSpace: "pre" }}>
+            {lyrics}
+            {/* if my search is empty then display lyrics... */}
+            {/* we have already set useEffect that if we play a song then our search would be empty "" */}
+          </div>
+        )}
       </div>
-      <div></div>
+      <div>
+        <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+      </div>
     </Container>
   );
 }
