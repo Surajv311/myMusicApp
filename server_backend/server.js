@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 // fixed nodemon update by deleting nodemon.ps1 file... without changing execution policies...
 
 const express = require("express");
@@ -34,15 +36,16 @@ app.use(function (req, res, next) {
 
 */
 
-const clientId_ = "client";
-const clientSecret_ = "secret";
-const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
+const clientId_ = process.env.CLIENT_ID,
+const clientSecret_ = process.env.CLIENT_SECRET,
+//const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
+const redirectUri_ = process.env.__REDIRECT_URI,
 
 //docs
 var credentials = {
-  redirectUri: redirectUri_,
   clientId: clientId_, // dotenv...
   clientSecret: clientSecret_,
+  redirectUri: redirectUri_,
 };
 
 app.post("/login", (req, res) => {
