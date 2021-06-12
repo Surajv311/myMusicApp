@@ -35,6 +35,7 @@ export default function Dashboard({ code }) {
       })
       .then((res) => {
         // so when response received we set the lyrics.....
+        console.log(res.data.lyrics);
         setLyrics(res.data.lyrics);
       });
   }, [playingTrack]);
