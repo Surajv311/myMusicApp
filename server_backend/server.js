@@ -3,7 +3,7 @@ require("dotenv").config();
 // fixed nodemon update by deleting nodemon.ps1 file... without changing execution policies...
 
 const express = require("express");
-const SpotifyApi = require("spotify-web-api-node");
+const SpotifyWebApi = require("spotify-web-api-node");
 // spotifywebapi would take the code from url to get tokens...
 const cors = require("cors");
 const bodyParser = require("body-parser"); //  body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /*
-
+//////////////////////////////////////////////////////////
 Middleware functions are functions that have access to the request object ( req ), 
 the response object ( res ), and the next function in the application's request-response cycle.
 
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
   console.log('Time:', Date.now())
   next()
 })
-
+//////////////////////////////////////////////////////////
 */
 
 var clientId_ = process.env.CLIENT_ID;
@@ -56,8 +56,8 @@ var credentials = {
 app.post("/login", (req, res) => {
   const code = req.body.code;
   // taking the 'code' portion of body
-  console.log(req.body);
-  const api_login = new SpotifyApi(credentials);
+  // console.log(req.body);
+  const api_login = new SpotifyWebApi(credentials);
   // we get tokens once we authorize the code, in url...
   api_login
     .authorizationCodeGrant(code)
@@ -77,7 +77,7 @@ app.post("/login", (req, res) => {
 // setting up the refresh access token...following docs
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
-  const api_refresh = new SpotifyApi({
+  const api_refresh = new SpotifyWebApi({
     // redirectUri: redirectUri_,
     // clientId: clientId_,
     // clientSecret: clientSecret_,
