@@ -6,19 +6,19 @@ export default function Player({ accessToken, trackUri }) {
 
   useEffect(() => setPlay(true), [trackUri]);
 
-  if (!accessToken) return; // if no access token then return...
+  if (!accessToken) return null; // if no access token then return...
   return (
     <SpotifyPlayer
-      styles={{
-        // docs
-        activeColor: "#fff",
-        bgColor: "#333",
-        color: "#fff",
-        loaderColor: "#fff",
-        sliderColor: "#1cb954",
-        trackArtistColor: "#ccc",
-        trackNameColor: "#fff",
-      }}
+      //   styles={{
+      //     // docs
+      //     activeColor: "#fff",
+      //     bgColor: "#333",
+      //     color: "#fff",
+      //     loaderColor: "#fff",
+      //     sliderColor: "#1cb954",
+      //     trackArtistColor: "#ccc",
+      //     trackNameColor: "#fff",
+      //   }}
       token={accessToken}
       showSaveIcon
       callback={(state) => {
