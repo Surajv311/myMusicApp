@@ -36,10 +36,15 @@ app.use(function (req, res, next) {
 
 */
 
-const clientId_ = process.env.CLIENT_ID,
-const clientSecret_ = process.env.CLIENT_SECRET,
+var clientId_ = process.env.CLIENT_ID;
+var clientSecret_ = process.env.CLIENT_SECRET;
 //const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
-const redirectUri_ = process.env.__REDIRECT_URI,
+var redirectUri_ = process.env.__REDIRECT_URI;
+
+// var clientId_ = "";
+// var clientSecret_ = "";
+// //const redirectUri_ = "http://localhost:3000/callback/"; //   redirectUri_:  'http://localhost:3000/',
+// var redirectUri_ = "http://localhost:3000/callback";
 
 //docs
 var credentials = {
