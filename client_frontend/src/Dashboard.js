@@ -2,13 +2,13 @@ import { React, useState, useEffect } from "react";
 import Auth from "./Auth";
 import TrackSearch from "./TrackSearch";
 import { Container, Form } from "react-bootstrap";
-import SpotifyApi from "spotify-web-api-node";
+import SpotifyWebApi from "spotify-web-api-node";
 import Player from "./Player";
 import axios from "axios";
 
 const client_id = "585eaa2fa9ec4891a14bff801067f8d8";
 
-const api_search = new SpotifyApi(client_id);
+const api_search = new SpotifyWebApi(client_id);
 
 export default function Dashboard({ code }) {
   const accessToken = Auth(code);
