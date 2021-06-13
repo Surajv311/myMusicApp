@@ -1,14 +1,20 @@
-# Music app using Spotify's API
+### [UNDER TEST]
+## Music app using Spotify's API
 
-The frontend is bulit using React & integrated with
-Node backend to parse API requests. 
+The frontend is built using React integrated with
+Node backend to parse Spotify API requests to 
+play music. 
 
-## Under Test: 
 <br>
-To Fix: Spotify redirect_uri error. 
+
+` To Fix: Spotify redirect_uri error. `
+
 <br>
-Already tried to change url's by changing to :
-``` http://localhost:3000/callback```
+
+` Possible Fixes (Tested):`
+
+[Stackoverflow Q](https://stackoverflow.com/questions/38198071/setting-localhost-as-a-spotify-redirect-uri)
+and  [Github Issue](https://github.com/spotify/web-api-auth-examples/issues/41)
 
 <br>
 
