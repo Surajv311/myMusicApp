@@ -1,0 +1,7 @@
+// Before setting up the frontend. 
+
+-> Create an app in the spotify developers account.
+-> Ensure that the redirect whitelisted url is : localhost:3000/callback (~test).
+-> Make note of client_id & client_secret. 
+
+//
