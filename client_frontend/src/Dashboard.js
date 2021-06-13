@@ -34,14 +34,13 @@ export default function Dashboard({ code }) {
         },
       })
       .then((res) => {
-        // so when response received we set the lyrics.....
         console.log(res.data.lyrics);
         setLyrics(res.data.lyrics);
       });
   }, [playingTrack]);
 
   useEffect(() => {
-    if (!accessToken) return; // if accessToken doesn't exist then return ...else run useEffect...
+    if (!accessToken) return;
     api_search.setAccessToken(accessToken);
   }, [accessToken]);
 
@@ -58,7 +57,7 @@ export default function Dashboard({ code }) {
               if (image.height < smallImage.height) return image;
               return smallImage;
             },
-            track__.album.images[0] // taking the smallest pic for image... in res.body... different images...album pic
+            track__.album.images[0]
           );
 
           return {
@@ -71,8 +70,7 @@ export default function Dashboard({ code }) {
       );
     });
 
-    return () => (cancelFlag = true); // so when we search for a song, to avoid delay for every alphabet we put...
-    // put a flag...
+    return () => (cancelFlag = true);
   }, [search, accessToken]);
 
   return (
@@ -94,8 +92,6 @@ export default function Dashboard({ code }) {
         {searchResults.length === 0 && (
           <div className="text-center" style={{ whiteSpace: "pre" }}>
             {lyrics}
-            {/* if my search is empty then display lyrics... */}
-            {/* we have already set useEffect that if we play a song then our search would be empty "" */}
           </div>
         )}
       </div>
