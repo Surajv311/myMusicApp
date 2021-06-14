@@ -1,0 +1,16 @@
+Redirect URIs
+http://localhost:3000/callback/ Remove
+http://localhost:3000/callback Remove
+http://localhost:3001/login Remove
+http://localhost:3000/refresh Remove
+http://localhost:3000/lyrics Remove
+http://localhost:3001/lyrics Remove
+http://localhost:3001/refresh Remove
+https://accounts.spotify.com:8000/authorize Remove
+https://accounts.spotify.com/authorize?client_id=585eaa2fa9ec4891a14bff801067f8d8&response_type=code&redirect_uri=http://localhost:3000/callback&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state Remove
+http://localhost:8888/callback Remove
+http://localhost:8888/callback/ Remove
+http://localhost:3001/callback/ Remove
+http://localhost:3001/callback Remove
+http://localhost:3000/callback/?code=AQCzPOBzdp1Kj4KhJvyi-fNgG0EujLspUJdURYtL0IzBRLGSp8FDBHJrMDYHF698QnXW447-Qi1Knfm9yiZ6Unld9GAFZnKPskp5_0WhNiJyGpJ1YhzLttM79hiUWPlXvJZQOgfrzOHnvzjWbFaXjsl-9nbvIzIKhioctXkY4xEEFQ0gbXtG7Fju9Bwm7_4-vX8RjVRGyLSmLG4DGbFpZpG68HGLrhHSIuDR_bBummI_gJeZjk2_-a2EgRO9dhFuW-xVtcOXH8RYc91q6dGLTnPY7gZDCFTLxvHxOfONFFj4Tu6FlpV18Laxk30qht-WcuwL2o-EOD7XRO6EeHyzElCLSl8D5bgEMIheVvdQCI4
+

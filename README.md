@@ -5,6 +5,7 @@ The frontend is built using React integrated with
 Node backend to parse Spotify API requests to 
 play music. 
 
+
 <br>
 
 ` To Fix: Spotify redirect_uri error. `
