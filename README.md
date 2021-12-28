@@ -1,9 +1,9 @@
 # Music app using Spotify's API
 
-The frontend is bulit using React & integrated with
+The frontend is built using React & integrated with
 Node backend to parse API requests. 
 
-## Under Test: 
+## Currently Under Test: 
 <br>
 To Fix: Spotify redirect_uri error. 
 <br>
